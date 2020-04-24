@@ -43,6 +43,12 @@
 
 </script>
 <script>
+	function showImage(fileCallPath){
+		
+		alert(fileCallPath);
+	}
+</script>
+<script>
 $(document).ready(function(){
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 	var maxSize = 5242880;
@@ -70,13 +76,20 @@ $(document).ready(function(){
 		$(uploadResultArr).each(function(i, obj) {
 			
 			if(!obj.image){
-				str += "<li><img src='/resources/img/attach.png'>"
-				+ obj.fileName + "</li>";
+				
+				var fileCallPath = encodeURIComponent(obj.uploadPath+"/"+obj.uuid +"_"+obj.fileName);
+				
+				str += "<li><a href='/download?fileName="+fileCallPath+"'>"+"<img src='/resources/img/attach.png'>"
+			+obj.fileName+"</a></li>";
 			} else {
 				// str += "<li>" + obj.fileName + "</li>";
 				var fileCallPath = encodeURIComponent(obj.uploadPath+ "/s_"+obj.uuid+"_"+obj.fileName);
 				
-				str += "<li><img src='/display?fileName="+fileCallPath+"'><li>";
+				var originPath = obj.uploadPath+ "\\"+obj.uuid+"_"+obj.fileName;
+				
+				originPath = originPath.replace(new RegExp(/\\/g),"/");
+				
+				str += "<li><a href=\"javascript:showImage(\'"+originPath+"\')\"><img src='/display?fileName="+fileCallPath+"'></a><li>";
 			}
 		});
 		
@@ -121,5 +134,6 @@ $(document).ready(function(){
 	});
 });
 </script>
+
 </body>
 </html>
