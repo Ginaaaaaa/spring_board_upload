@@ -9,28 +9,57 @@
 <body>
 <h1>Upload with Ajax</h1>
 
-<div class="uploadDiv">
-	<input type='file' name='uploadFile' multiple>
-</div>
-<style>
-.uploadResult{
-	width:100%;
+	<style>
+.uploadResult {
+	width: 100%;
 	background-color: gray;
 }
-.uploadResult ul{
-	display:flex;
+
+.uploadResult ul {
+	display: flex;
 	flex-flow: row;
 	justify-content: center;
 	align-items: center;
 }
+
 .uploadResult ul li {
 	list-style: none;
 	padding: 10px;
 }
-.uploadResult ul li img{
-	width: 20px;
+
+.uploadResult ul li img {
+	width: 100px;
 }
 </style>
+
+<style>
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+
+<div class="uploadDiv">
+	<input type='file' name='uploadFile' multiple>
+</div>
+<div class='bigPictureWrapper'>
+	<div class='bigPicture'>
+	</div>
+</div>
 <div class='uploadResult'>
 	<ul>
 	
@@ -45,7 +74,13 @@
 <script>
 	function showImage(fileCallPath){
 		
-		alert(fileCallPath);
+		//	alert(fileCallPath);
+		
+		 $(".bigPictureWrapper").css("display","flex").show();
+		  
+		  $(".bigPicture")
+		  .html("<img src='/display?fileName="+fileCallPath+"'>")
+		  .animate({width:'100%', height: '100%'}, 1000);
 	}
 </script>
 <script>
