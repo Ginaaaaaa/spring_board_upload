@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.zerock</groupId>
 	<artifactId>controller</artifactId>
-	<name>ex05</name>
+	<name>ex02</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -203,7 +203,7 @@
 			<artifactId>thumbnailator</artifactId>
 			<version>0.4.11</version>
 		</dependency>
-		
+
 	</dependencies>
 	<build>
 		<plugins>
